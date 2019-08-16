@@ -1,0 +1,15 @@
+
+/*random style information for background map*/ 
+
+body {
+  background-color: white;
+}
+
+h1 {
+  color: navy;
+  margin-left: 20px;
+}
+/* ensures that the width of the popup window adjusts to the size of the input, especially for images */
+.leaflet-popup-content {
+width:auto !important;
+}
