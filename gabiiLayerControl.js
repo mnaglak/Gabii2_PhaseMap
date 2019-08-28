@@ -176,7 +176,8 @@
 //Creation of pan/scale function like Fulcrum images have. Uses PanControl plugin  
 		L.control.pan().addTo(map);
 		L.control.scale().addTo(map);
-		
+		L.control.ruler().addTo(map);
+
 //create the search control, note that the text within the search box can be edited directly in the .js for the plugin
 	var searchControl = new L.Control.Search({
 		layer: allPhases,
