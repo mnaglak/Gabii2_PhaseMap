@@ -29,14 +29,9 @@
 			var lng = coord.lng;
 			console.log("You clicked the map at latitude: " + lat + " and longitude: " + lng);
 			});
-
-/*Placement of manually georeferenced single locally hosted image underlay (no plug in needed, initially turned off)
-			NOTE IMAGE BOUNDS ARE NOT EXACT PLACE BECAUSE I DIDNT WANT TO GO THROUGH THE EFFORT
-			var imageUrl = 'Gabii2018_frankenphoto_official.jpg',
-			imageBounds = [[41.887, 12.719], [41.89, 12.724]];
-			var frankenPhoto = L.imageOverlay(imageUrl, imageBounds);
-*/
 		
+		
+		var webAddress = "https://gabii.cast.uark.edu/data/browse/stratigraphic_units/"
 //Specialized Function to allow for popup box containing attributes of Gabii .geojson
 			function popUp(f,l){
 				var out = [];
@@ -47,7 +42,7 @@
 					out.push("Total Area (m): " + f.properties.Shape_Area);
 					out.push("Tomb Number (if available): " +f.properties.tomb_ID);
 					out.push("Notes: " +f.properties.notes);
-					out.push('<a href="'+ f.properties.Database_Link + '" target="_blank">Link to Database</a>'); } //allows for link to external URL via attribute in .geoJson table
+					out.push('<a href="'+ webAddress + f.properties.SU + '" target="_blank">Link to Database</a>'); } //allows for link to external URL via attribute in .geoJson table
 					l.bindPopup(out.join("<br />"));
 				}
 			
@@ -102,53 +97,28 @@
 				"opacity": 0.5};
 				
 //Import of locally hosted geoJSON files with popUp box showing attributes and designated line style, uses AJAX plug in 
-		var phaseA0a = new L.GeoJSON.AJAX("PhaseA0a_geojsonLocal.geojson", 
+		var phase0a = new L.GeoJSON.AJAX("Phase0a.geojson", 
 			{style:myStyle0a,onEachFeature:popUp});       
-			phaseA0a.addTo(map);
-		var phaseA0b = new L.GeoJSON.AJAX("PhaseA0b_geojsonLocal.geojson", 
+		var phase0b = new L.GeoJSON.AJAX("Phase0b.geojson", 
 			{style:myStyle0b,onEachFeature:popUp});       
-			phaseA0b.addTo(map);
-		var phaseA1 = new L.GeoJSON.AJAX("PhaseA1_geojsonLocal.geojson", 
+		var phase1 = new L.GeoJSON.AJAX("Phase1.geojson", 
 			{style:myStyle1,onEachFeature:popUp});       
-			phaseA1.addTo(map);	
-		var phaseA2 = new L.GeoJSON.AJAX("PhaseA2_geojsonLocal.geojson", 
+		var phase2 = new L.GeoJSON.AJAX("Phase2.geojson", 
 			{style:myStyle2,onEachFeature:popUp});       
-			phaseA2.addTo(map);
-		var phaseA3 = new L.GeoJSON.AJAX("PhaseA3_geojsonLocal.geojson", 
+		var phase3 = new L.GeoJSON.AJAX("Phase3.geojson", 
 			{style:myStyle3,onEachFeature:popUp});       
-			phaseA3.addTo(map);	
-		var phaseA4a = new L.GeoJSON.AJAX("PhaseA4a_geojsonLocal.geojson", 
+		var phase4a = new L.GeoJSON.AJAX("Phase4a.geojson", 
 			{style:myStyle4a,onEachFeature:popUp});       
-			phaseA4a.addTo(map);
-		var phaseA4b = new L.GeoJSON.AJAX("PhaseA4b_geojsonLocal.geojson", 
+		var phase4b = new L.GeoJSON.AJAX("Phase4b.geojson", 
 			{style:myStyle4b,onEachFeature:popUp});       
-			phaseA4b.addTo(map);
-		var phaseA4c = new L.GeoJSON.AJAX("PhaseA4c_geojsonLocal.geojson", 
+		var phase4c = new L.GeoJSON.AJAX("Phase4c.geojson", 
 			{style:myStyle4c,onEachFeature:popUp});       
-			phaseA4c.addTo(map);	
-
-		var phaseB3 = new L.GeoJSON.AJAX("PhaseB3_geojsonLocal.geojson", 
-			{style:myStyle3,onEachFeature:popUp});       
-			phaseB3.addTo(map);	
-		var phaseB4a = new L.GeoJSON.AJAX("PhaseB4a_geojsonLocal.geojson", 
-			{style:myStyle4a,onEachFeature:popUp});       
-			phaseB4a.addTo(map);
-		var phaseB4b = new L.GeoJSON.AJAX("PhaseB4b_geojsonLocal.geojson", 
-			{style:myStyle4b,onEachFeature:popUp});       
-			phaseB4b.addTo(map);
-		var phaseB4c = new L.GeoJSON.AJAX("PhaseB4c_geojsonLocal.geojson", 
-			{style:myStyle4c,onEachFeature:popUp});       
-			phaseB4c.addTo(map);	
-
+	
 		var quarry = new L.GeoJSON.AJAX("Phase4Quarry.geojson",
-		{style:myStyle4c,onEachFeature:popUp});
-			quarry.addTo(map);
+		{style:myStyle4a,onEachFeature:popUp});
 
-		//merge A and B phases 3 and 4
-		var phase3 = L.layerGroup([phaseA3, phaseB3]);
-		var phase4a = L.layerGroup([phaseA4a, phaseB4a, quarry]);
-		var phase4b = L.layerGroup([phaseA4b, phaseB4b, quarry]);
-		var phase4c = L.layerGroup([phaseA4c, phaseB4c, quarry]);
+		var phase4aWithQuarry = L.layerGroup([phase4a, quarry]).addTo(map);
+		
 		
 		//Creation of Layering box for turning on and off basemaps, .geoJSON layers, and other underlays
 		var baseLayers = {
@@ -159,12 +129,12 @@
 			"Airphoto 2009" : airPhoto2009,
 			"Airphoto 2010" : airPhoto2010,
 			"Airphoto 2017" : airPhoto2017,
-			"Phase0a" : phaseA0a,
-			"Phase0b" : phaseA0b,
-			"Phase1" : phaseA1,
-			"Phase2" : phaseA2,
+			"Phase0a" : phase0a,
+			"Phase0b" : phase0b,
+			"Phase1" : phase1,
+			"Phase2" : phase2,
 			"Phase3" : phase3,
-			"Phase4a" : phase4a,
+			"Phase4a" : phase4aWithQuarry,
 			"Phase4b" : phase4b,
 			"Phase4c" : phase4c
 			};
