@@ -3,7 +3,7 @@
 		var mapOptions = {
 			center: [41.8875, 12.72], //set center
 			zoom: 18 , //set initial zoom
-			maxZoom : 24,  //set max zoom
+			maxZoom : 27,  //set max zoom
 			measureControl: true //for measuring purposes
 			}
 		
@@ -18,9 +18,8 @@
 			
 		
 //Example of a localled called tiled basemap created from a .geotiff  using gdal2tiles (workflow available) 
-			var airPhoto2017 = L.tileLayer('./2017AirPhoto/{z}/{x}/{y}.png', {tms: true, opacity: 1, attribution: "", minZoom: 18, maxZoom: 25});
-			var airPhoto2009 = L.tileLayer('./2009AirPhoto/{z}/{x}/{y}.png', {tms: true, opacity: 1, attribution: "", minZoom: 18, maxZoom: 25});
-			var airPhoto2010 = L.tileLayer('./2010AirPhoto_highres/{z}/{x}/{y}.png', {tms: true, opacity: 1, attribution: "", minZoom: 18, maxZoom: 24});
+			var airPhoto2009 = L.tileLayer('./2009AirPhoto/{z}/{x}/{y}.png', {tms: true, opacity: 1, attribution: "", minZoom: 18, maxZoom: 24}).addTo(map);
+			var airPhoto2010 = L.tileLayer('./2010AirPhoto/{z}/{x}/{y}.png', {tms: true, opacity: 1, attribution: "", minZoom: 18, maxZoom: 24});
 				airPhoto2010.addTo(map);
 //Lets you see lat/long in the console window. Useful for placing non-georeferenced maps in the correct location or for placing markers
 			map.on('click', function(e){
@@ -128,7 +127,6 @@
 		var overlayMaps = {
 			"Airphoto 2009" : airPhoto2009,
 			"Airphoto 2010" : airPhoto2010,
-			"Airphoto 2017" : airPhoto2017,
 			"Phase0a" : phase0a,
 			"Phase0b" : phase0b,
 			"Phase1" : phase1,
@@ -141,7 +139,7 @@
 			L.control.layers(baseLayers, overlayMaps).addTo(map);
 		
 		
-		var allPhases = L.layerGroup([phaseA0a, phaseA0b, phaseA1, phaseA2, phase3, phase4a, phase4b, phase4c]);
+		var allPhases = L.layerGroup([phase0a, phase0b, phase1, phase2, phase3, phase4aWithQuarry, phase4b, phase4c]);
 		
 //Creation of pan/scale function like Fulcrum images have. Uses PanControl plugin  
 		L.control.pan().addTo(map);
