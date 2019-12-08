@@ -11,5 +11,5 @@ h1 {
 }
 /* ensures that the width of the popup window adjusts to the size of the input, especially for images */
 .leaflet-popup-content {
-width:auto !important;
+width:200px !important;
 }

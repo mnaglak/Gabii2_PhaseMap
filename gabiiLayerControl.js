@@ -36,9 +36,9 @@
 				var out = [];
 				if (f.properties){
 					out.push("SU: " +f.properties.SU);
-					out.push("Type: " + f.properties.Type);
+					out.push("Type: " + f.properties.DESCRIPTIO);
 					out.push("Phase: " + f.properties.Phase);
-					out.push("Total Area (m): " + f.properties.Shape_Area);
+					out.push("Total Area (m): " + f.properties.SHAPE_Area);
 					out.push("Tomb Number (if available): " +f.properties.tomb_ID);
 					out.push("Notes: " +f.properties.notes);
 					out.push('<a href="'+ webAddress + f.properties.SU + '" target="_blank">Link to Database</a>'); } //allows for link to external URL via attribute in .geoJson table
