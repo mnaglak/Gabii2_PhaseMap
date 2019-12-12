@@ -1,9 +1,10 @@
 
 //Define map start up options, here defined to center on Gabii
 		var mapOptions = {
-			center: [41.8875, 12.72], //set center
-			zoom: 18 , //set initial zoom
+			center: [ 41.887856934, 12.719429433], //set center
+			zoom: 20 , //set initial zoom
 			maxZoom : 27,  //set max zoom
+			minZoom : 10,
 			measureControl: true //for measuring purposes
 			}
 		
@@ -60,64 +61,128 @@
 					}
 				}
 			*/	
+	function swapStyle (feature) {
+		switch (feature.properties.Phase) {
+			case 'A0a' : return {color: "#000000", fillColor: "#ff1500",weight: 2,opacity: 0.5};
+			case 'A0b' : return {color: "#000000",fillColor: "#04ff00",weight: 2,opacity: 0.5};
+			case 'A1'  : return {color: "#000000",fillColor: "#0008ff",weight: 2,opacity: 0.5};
+			case 'A1'  : return {color: "#000000",fillColor: "#0008ff",weight: 2,opacity: 0.5};
+			case 'B1a' : return {color: "#000000",fillColor: "#ff4500",weight: 2,opacity: 0.5};
+			case 'A2'  : return {color: "#000000",fillColor: "#ff00fa",weight: 2,opacity: 0.5};
+			case 'A3'  : return {color: "#000000",fillColor: "#ff4500",weight: 2,opacity: 0.5};
+			case 'B3'  : return {color: "#000000",fillColor: "#ff4500",weight: 2,opacity: 0.5};
+			case 'A4'  : return {color: "#000000",fillColor: "#FFFFFF",weight: 2,opacity: 0.5};
+			case 'A4a' : return {color: "#000000",fillColor: "#FFFFFF",weight: 2,opacity: 0.5};
+			case 'B4a' : return {color: "#000000",fillColor: "#FFFFFF",weight: 2,opacity: 0.5};
+			case 'A4b' : return {color: "#000000",fillColor: "#ccff00",weight: 2,opacity: 0.5};
+			case 'B4b' : return {color: "#000000",fillColor: "#ccff00",weight: 2,opacity: 0.5};
+			case 'A4c' : return {color: "#000000",fillColor: "#00ffe9",weight: 2,opacity: 0.5};
+			case 'B4c' : return {color: "#000000",fillColor: "#00ffe9",weight: 2,opacity: 0.5};
+
+		}
+	}
 			
-//Random Style definitions for individual .geoJson layers
-		var myStyle0a = {
-				"color": "#ff1500",
-				"weight": 2,
-				"opacity": 0.5};
-		var myStyle0b = {
-				"color": "#04ff00",
-				"weight": 2,
-				"opacity": 0.5};
-		var myStyle1 = {
-				"color": "#0008ff",
-				"weight": 2,
-				"opacity": 0.5};
-		var myStyle2 = {
-				"color": "#ff00fa",
-				"weight": 2,
-				"opacity": 0.5};
-		var myStyle3 = {
-				"color": "#ff7b00",
-				"weight": 2,
-				"opacity": 0.5};
-		var myStyle4a = {
-				"color": "#ff00d4",
-				"weight": 2,
-				"opacity": 0.5};
-		var myStyle4b = {
-				"color": "#ccff00",
-				"weight": 2,
-				"opacity": 0.5};
-		var myStyle4c = {
-				"color": "#00ffe9",
-				"weight": 2,
-				"opacity": 0.5};
 				
 //Import of locally hosted geoJSON files with popUp box showing attributes and designated line style, uses AJAX plug in 
 		var phase0a = new L.GeoJSON.AJAX("Phase0a.geojson", 
-			{style:myStyle0a,onEachFeature:popUp});       
+			{style:swapStyle,onEachFeature:popUp}).addTo(map);
+			
+			phase0a.on('click',function (e) {
+			e.layer.setStyle({fillColor: '#B22222', color: '#ff0000'});
+			});    
+			
+			phase0a.on('popupclose', function(e){
+			phase0a.setStyle(swapStyle);
+		});
+			
+			
 		var phase0b = new L.GeoJSON.AJAX("Phase0b.geojson", 
-			{style:myStyle0b,onEachFeature:popUp});       
-		var phase1 = new L.GeoJSON.AJAX("Phase1.geojson", 
-			{style:myStyle1,onEachFeature:popUp});       
-		var phase2 = new L.GeoJSON.AJAX("Phase2.geojson", 
-			{style:myStyle2,onEachFeature:popUp});       
-		var phase3 = new L.GeoJSON.AJAX("Phase3.geojson", 
-			{style:myStyle3,onEachFeature:popUp});       
-		var phase4a = new L.GeoJSON.AJAX("Phase4a.geojson", 
-			{style:myStyle4a,onEachFeature:popUp});       
-		var phase4b = new L.GeoJSON.AJAX("Phase4b.geojson", 
-			{style:myStyle4b,onEachFeature:popUp});       
-		var phase4c = new L.GeoJSON.AJAX("Phase4c.geojson", 
-			{style:myStyle4c,onEachFeature:popUp});       
-	
-		var quarry = new L.GeoJSON.AJAX("Phase4Quarry.geojson",
-		{style:myStyle4a,onEachFeature:popUp});
+			{style:swapStyle,onEachFeature:popUp}).addTo(map);     
+			phase0b.on('click',function (e) {
+			e.layer.setStyle({fillColor: '#ff0000', color: '#000000'});
+			}); 
 
+			phase0b.on('popupclose', function(e){
+			phase0b.setStyle(swapStyle);
+		});
+			
+		var phase1 = new L.GeoJSON.AJAX("Phase1.geojson", 
+			{style:swapStyle,onEachFeature:popUp}) 
+			.on('click',function (e) {
+			e.layer.setStyle({fillColor: '#ff0000', color: '#000000'});
+			}); 
+			
+			phase1.on('popupclose', function(e){
+			phase1.setStyle(swapStyle);
+		});
+			
+			
+		var phase2 = new L.GeoJSON.AJAX("Phase2.geojson", 
+			{style:swapStyle,onEachFeature:popUp})
+			.on('click',function (e) {
+			e.layer.setStyle({fillColor: '#ff0000', color: '#000000'});
+			});  
+
+			phase2.on('popupclose', function(e){
+			phase2.setStyle(swapStyle);
+		});
+			
+		var phase3 = new L.GeoJSON.AJAX("Phase3.geojson", 
+			{style:swapStyle,onEachFeature:popUp})
+			.on('click',function (e) {
+			e.layer.setStyle({fillColor: '#ff0000', color: '#000000'});
+			}); 
+
+			phase3.on('popupclose', function(e){
+			phase3.setStyle(swapStyle);
+		});
+   			
+		var phase4a = new L.GeoJSON.AJAX("Phase4a.geojson", 
+			{style:swapStyle,onEachFeature:popUp})
+			.on('click',function (e) {
+			e.layer.setStyle({fillColor: '#ff0000', color: '#000000'});
+			});   
+
+			phase4a.on('popupclose', function(e){
+			phase4a.setStyle(swapStyle);
+			});
+			
+			
+		var phase4b = new L.GeoJSON.AJAX("Phase4b.geojson", 
+			{style:swapStyle,onEachFeature:popUp})
+			.on('click',function (e) {
+			e.layer.setStyle({fillColor: '#ff0000', color: '#000000'});
+			});       
+
+			phase4b.on('popupclose', function(e){
+			phase4b.setStyle(swapStyle);
+			});			
+			
+			
+		var phase4c = new L.GeoJSON.AJAX("Phase4c.geojson", 
+			{style:swapStyle,onEachFeature:popUp})
+			.on('click',function (e) {
+			e.layer.setStyle({fillColor: '#ff0000', color: '#000000'});
+			});       
+	
+			phase4c.on('popupclose', function(e){
+			phase4c.setStyle(swapStyle);
+		});
+		var quarry = new L.GeoJSON.AJAX("Phase4Quarry.geojson",
+		{style:swapStyle,onEachFeature:popUp})
+		.on('click',function (e) {
+			e.layer.setStyle({fillColor: '#ff0000', color: '#000000'});
+			});    
+
+		quarry.on('popupclose', function(e){
+			quarry.setStyle(swapStyle);
+		});
 		var phase4aWithQuarry = L.layerGroup([phase4a, quarry]).addTo(map);
 		
+		
+		
+		
+	
 		
 		//Creation of Layering box for turning on and off basemaps, .geoJSON layers, and other underlays
 		var baseLayers = {
@@ -125,8 +190,8 @@
 			};
 			
 		var overlayMaps = {
-			"Airphoto 2009" : airPhoto2009,
-			"Airphoto 2010" : airPhoto2010,
+			"Aerial Imagery 2009" : airPhoto2009,
+			"Aerial Imagery 2010" : airPhoto2010,
 			"Phase0a" : phase0a,
 			"Phase0b" : phase0b,
 			"Phase1" : phase1,

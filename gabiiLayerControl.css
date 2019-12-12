@@ -13,3 +13,18 @@ h1 {
 .leaflet-popup-content {
 width:200px !important;
 }
+
+/*.leaflet-control-layers-toggle:after{ 
+    content:"Area A/B Phasing"; 
+    color:#000 ;
+}
+
+.leaflet-control-layers-toggle{ 
+    width:auto;
+    background-position:3px 50% ;
+    padding:3px;
+    padding-left:36px;
+    text-decoration:none;
+    line-height:36px;
+
+}*/
