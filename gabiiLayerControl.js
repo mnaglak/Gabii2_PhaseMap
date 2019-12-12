@@ -36,8 +36,62 @@
 			function popUp(f,l){
 				var out = [];
 				if (f.properties){
+					
+					var layerType = "";
+					if (f.properties.DESCRIPTIO=="TOP") {
+					layerType = "Cut";}
+					else if (f.properties.DESCRIPTIO=="RD") {
+					layerType = "Road"; }
+					else if (f.properties.DESCRIPTIO=="FL") {
+					layerType = "Floor"; }
+					else if (f.properties.DESCRIPTIO=="WL") {
+					layerType = "Wall"; }
+					else if (f.properties.DESCRIPTIO=="WM") {
+					layerType = "Water Feature"; }
+					else if (f.properties.DESCRIPTIO=="FEAT") {
+					layerType = "Feature"; }
+					else if (f.properties.DESCRIPTIO=="TH") {
+					layerType = "Threshhold"; }
+					else if (f.properties.DESCRIPTIO=="FD") {
+					layerType = "Foundation"; }
+					else if (f.properties.DESCRIPTIO=="GV") {
+					layerType = "Tomb Feature"; }
+					else if (f.properties.DESCRIPTIO=="GL") {
+					layerType = "Grave Lining"; }
+					else if (f.properties.DESCRIPTIO=="N-S TOMB") {
+					layerType = "Tomb Feature"; }
+					else if (f.properties.DESCRIPTIO=="E-W TOMB") {
+					layerType = "Tomb Feature"; }
+					else if (f.properties.DESCRIPTIO=="FP") {
+					layerType = "Floor Preparation"; }
+					else if (f.properties.DESCRIPTIO=="PV") {
+					layerType = "Pavement"; }
+					else if (f.properties.DESCRIPTIO=="OT") {
+					layerType = "Other"; }
+					else if (f.properties.DESCRIPTIO=="INT") {
+					layerType = "Feature"; }
+					else if (f.properties.DESCRIPTIO=="DEP") {
+					layerType = "Deposit"; }
+					else if (f.properties.DESCRIPTIO=="FILL") {
+					layerType = "Fill of Cut"; }
+					else if (f.properties.DESCRIPTIO=="BOT") {
+					layerType = "Cut"; }
+					else if (f.properties.DESCRIPTIO=="STEP") {
+					layerType = "Stairs"; }
+					else if (f.properties.DESCRIPTIO=="deposit") {
+					layerType = "Deposit"; }
+					else if (f.properties.DESCRIPTIO=="WF") {
+					layerType = "Wall Facing"; }
+					else if (f.properties.DESCRIPTIO=="AR") {
+					layerType = "Feature"; }
+					else if (f.properties.SU == 622) {
+					layerType = "Quarry"; }
+					
+					
+					
 					out.push("SU: " +f.properties.SU);
-					out.push("Type: " + f.properties.DESCRIPTIO);
+					//out.push("Type: " + f.properties.DESCRIPTIO);
+					out.push("Type: " + layerType);
 					out.push("Phase: " + f.properties.Phase);
 					out.push("Total Area (m): " + f.properties.SHAPE_Area);
 					out.push("Tomb Number (if available): " +f.properties.tomb_ID);
