@@ -31,7 +31,7 @@
 			});
 		
 		
-		var webAddress = "https://gabii.cast.uark.edu/data/browse/stratigraphic_units/"
+		var webAddress = " https://quod.lib.umich.edu/g/gabii_2_data/x-stratigraphic_units/"
 //Specialized Function to allow for popup box containing attributes of Gabii .geojson
 			function popUp(f,l){
 				var out = [];
@@ -138,7 +138,7 @@
 			
 				
 //Import of locally hosted geoJSON files with popUp box showing attributes and designated line style, uses AJAX plug in 
-		var phase0a = new L.GeoJSON.AJAX("Phase0a.geojson", 
+		var phase0a = new L.GeoJSON.AJAX("phase0aGabii2.geojson", 
 			{style:swapStyle,onEachFeature:popUp}).addTo(map);
 			
 			phase0a.on('click',function (e) {
@@ -150,7 +150,7 @@
 		});
 			
 			
-		var phase0b = new L.GeoJSON.AJAX("Phase0b.geojson", 
+		var phase0b = new L.GeoJSON.AJAX("phase0bGabii2.geojson", 
 			{style:swapStyle,onEachFeature:popUp}).addTo(map);     
 			phase0b.on('click',function (e) {
 			e.layer.setStyle({fillColor: '#ff0000', color: '#000000'});
@@ -160,7 +160,7 @@
 			phase0b.setStyle(swapStyle);
 		});
 			
-		var phase1 = new L.GeoJSON.AJAX("Phase1.geojson", 
+		var phase1 = new L.GeoJSON.AJAX("phase1Gabii2.geojson", 
 			{style:swapStyle,onEachFeature:popUp}) 
 			.on('click',function (e) {
 			e.layer.setStyle({fillColor: '#ff0000', color: '#000000'});
@@ -171,7 +171,7 @@
 		});
 			
 			
-		var phase2 = new L.GeoJSON.AJAX("Phase2.geojson", 
+		var phase2 = new L.GeoJSON.AJAX("phase2Gabii2.geojson", 
 			{style:swapStyle,onEachFeature:popUp})
 			.on('click',function (e) {
 			e.layer.setStyle({fillColor: '#ff0000', color: '#000000'});
@@ -181,7 +181,7 @@
 			phase2.setStyle(swapStyle);
 		});
 			
-		var phase3 = new L.GeoJSON.AJAX("Phase3.geojson", 
+		var phase3 = new L.GeoJSON.AJAX("phase3Gabii2.geojson", 
 			{style:swapStyle,onEachFeature:popUp})
 			.on('click',function (e) {
 			e.layer.setStyle({fillColor: '#ff0000', color: '#000000'});
@@ -191,7 +191,7 @@
 			phase3.setStyle(swapStyle);
 		});
    			
-		var phase4a = new L.GeoJSON.AJAX("Phase4a.geojson", 
+		var phase4a = new L.GeoJSON.AJAX("phase4aGabii2.geojson", 
 			{style:swapStyle,onEachFeature:popUp})
 			.on('click',function (e) {
 			e.layer.setStyle({fillColor: '#ff0000', color: '#000000'});
@@ -202,7 +202,7 @@
 			});
 			
 			
-		var phase4b = new L.GeoJSON.AJAX("Phase4b.geojson", 
+		var phase4b = new L.GeoJSON.AJAX("phase4bGabii2.geojson", 
 			{style:swapStyle,onEachFeature:popUp})
 			.on('click',function (e) {
 			e.layer.setStyle({fillColor: '#ff0000', color: '#000000'});
@@ -213,7 +213,7 @@
 			});			
 			
 			
-		var phase4c = new L.GeoJSON.AJAX("Phase4c.geojson", 
+		var phase4c = new L.GeoJSON.AJAX("phase4cGabii2.geojson", 
 			{style:swapStyle,onEachFeature:popUp})
 			.on('click',function (e) {
 			e.layer.setStyle({fillColor: '#ff0000', color: '#000000'});
@@ -222,7 +222,7 @@
 			phase4c.on('popupclose', function(e){
 			phase4c.setStyle(swapStyle);
 		});
-		var quarry = new L.GeoJSON.AJAX("Phase4Quarry.geojson",
+		var quarry = new L.GeoJSON.AJAX("phase4QuarryGabii2.geojson",
 		{style:swapStyle,onEachFeature:popUp})
 		.on('click',function (e) {
 			e.layer.setStyle({fillColor: '#ff0000', color: '#000000'});
