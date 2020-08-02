@@ -31,7 +31,7 @@
 			});
 		
 		
-		var webAddress = " https://quod.lib.umich.edu/g/gabii_2_data/x-stratigraphic_units/"
+		var webAddress = "https://doi.org/10.3998/gabii.1.";
 //Specialized Function to allow for popup box containing attributes of Gabii .geojson
 			function popUp(f,l){
 				var out = [];
